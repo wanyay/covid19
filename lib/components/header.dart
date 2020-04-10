@@ -1,9 +1,16 @@
+import 'package:covid19/models/covid_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final covidData = Provider.of<CovidData>(context);
+    var data = covidData.getResponseJson();
+    String date =DateFormat.yMMMMd("en_US").format(new DateTime.fromMillisecondsSinceEpoch(data["updated"])).toString();
     return Container(
       padding: EdgeInsets.all(30),
       child: Row(
@@ -13,7 +20,8 @@ class Header extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                'World',
+                data["country"] == null ?
+                'World' : data["country"],
                 style: TextStyle(
                   fontSize: 23.0,
                   fontWeight: FontWeight.w400,
@@ -24,7 +32,7 @@ class Header extends StatelessWidget {
                 height: 10.0,
               ),
               Text(
-                'Apirl 5, 2020',
+                date,
                 style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w300,
