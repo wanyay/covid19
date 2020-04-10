@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:covid19/models/country.dart';
 import 'package:covid19/models/covid_data.dart';
+import 'package:covid19/screens/home_screen.dart';
 import 'package:covid19/screens/loading_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CountryScreen extends StatelessWidget {
   @override
@@ -26,8 +28,9 @@ class CountryScreen extends StatelessWidget {
                         fontSize: 20.0,
                       ),
                     ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoadingScreen()));
+                    onTap: () async {
+                      await Provider.of<CovidData>(context, listen: false).getDataByCountryCode(country.code);
+                      Navigator.pop(context);
                     },
                   );
                 },

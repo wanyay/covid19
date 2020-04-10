@@ -63,14 +63,14 @@ class DetailBox extends StatelessWidget {
         break;
       case 6:
         borderRadius = BorderRadius.only(bottomLeft: Radius.circular(15.0));
-        title = "Critical";
-        number = data["critical"].toString();
+        title = data["countryInfo"] == null ? "Affected Countries" : "Total Tests";
+        number = data["countryInfo"] == null ? data["affectedCountries"].toString() : data['tests'].toString();
         break;
 
       case 7:
         borderRadius = BorderRadius.only(bottomRight: Radius.circular(15.0));
-        title = "Affected Countries";
-        number = data["affectedCountries"].toString();
+        title = "Critical";
+        number = data["critical"].toString();
         break;
     }
 
@@ -80,8 +80,8 @@ class DetailBox extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Text(
               title,
@@ -96,6 +96,7 @@ class DetailBox extends StatelessWidget {
               number,
               style: TextStyle(
                 color: Colors.black,
+                fontWeight: FontWeight.w400,
                 fontSize: 17.0,
               ),
             ),

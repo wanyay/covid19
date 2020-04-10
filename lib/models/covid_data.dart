@@ -22,8 +22,11 @@ class CovidData extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       _resultJson = response.body;
+    } else {
+      _resultJson = "";
     }
-
+    
+    print(_resultJson);
     _isFetching = false;
     notifyListeners();
   }
@@ -37,8 +40,10 @@ class CovidData extends ChangeNotifier {
 
     if (response.statusCode == 200) {
       _resultJson = response.body;
+    } else {
+      _resultJson = "";
     }
-
+    
     _isFetching = false;
     notifyListeners();
   }

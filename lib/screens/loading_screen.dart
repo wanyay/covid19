@@ -7,17 +7,6 @@ import 'package:provider/provider.dart';
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
-
-  String countryCode = "";
-
-  LoadingScreen({this.countryCode}) {
-    if (countryCode == "") {
-      CovidData().getAllCountriesData();
-    } else {
-      CovidData().getDataByCountryCode(countryCode);
-    }
-  }
-
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
